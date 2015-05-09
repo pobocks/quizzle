@@ -1,1 +1,6 @@
 .env
+db/*.sqlite3
+
+# Various Emacs detritus
+*~
+**/\#*\#

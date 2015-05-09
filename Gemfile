@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'activerecord'
 gem 'capybara'
 gem 'dotenv'
 gem 'grape'
 gem 'pry'
+gem 'rake'
 gem 'sinatra'
+gem 'sinatra-activerecord'
 gem 'sqlite3'
 gem 'thin'
