@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508202434) do
+ActiveRecord::Schema.define(version: 20150511233445) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "value",       null: false
@@ -28,9 +28,10 @@ ActiveRecord::Schema.define(version: 20150508202434) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "value",      null: false
+    t.string   "value",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "merged_text", default: ""
   end
 
 end

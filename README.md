@@ -24,17 +24,24 @@ The core components of its application stack are:
 ## Installation
 
 1. Fetch latest code from *git location TBD*
-2. Populate .env with a value for the API key and basic auth name:password pairs.  Example values:
+2. Create a text file named .env in the root folder, with values for an API key and name:password pairs for basic auth if desired.
 
         ```
         API_KEY=thirtycharsormorefromyourfavoritesourceofrandomness
         BASIC_AUTH_PAIRS=oswald_cobblepot:p3ngu1n;santa_anna:alamo_rental
         ```
+
 3. `bundle install` in root directory
-4. `rackup` in root directory to start app for first time.
-5. TODO: DB setup
-6. TODO: Data loading
+4. `bundle exec rake db:schema:load`
+5. `rackup` in root directory to start app for first time.
+6. To load a csv file, run `bundle exec rake quizzle:import CSV=path/to/my/file.csv`
 
 ## API
 
-TBD where `D == *D*esign
+The API is powered by Grape, which provides versioning, parameter conversion/validation, etc.
+
+It's mounted at `http://my-app.host/api`.  Versioning is handled by including it in the `Accept:` header, as per the documentation [here](https://github.com/intridea/grape#header), but it has a sensible default, and there's only one version.
+
+Any operation that alters the records (Create, Update, Destroy) requires an API key.  This is set in the `.env` file, and passed into the application via the `X-Api-Key:` header.
+
+Create and Update expect POST and PUT requests with valid JSON bodies.
