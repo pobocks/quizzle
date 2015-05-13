@@ -10,11 +10,12 @@ module Quizzle
             end
 
     get '/' do
-      @qs = Question.all.limit(10)
-      @qs = @qs.order(:id => :desc) if params.key? 'reverse'
+      @qs = Question.all
+      @qs = @qs.order(:id => :desc) if params.key?('reverse')
+      @qs = @qs.limit(10)
       if params["skip"]
         @offset = params["skip"].to_i * 10
-        @qs = @qs.offset(offset)
+        @qs = @qs.offset(@offset)
       end
 
       haml :index

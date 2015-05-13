@@ -1,14 +1,18 @@
 %h1 Questions
+%p.instructions
+  Click on any row to highlight the correct answer.
+%hr
 %table#index
   %thead
     %tr
+      %th ID
       %th Questions
       %th Options
   %tbody
     - @qs.each do |q|
       %tr
-        %td
-          = q.value
+        %td= q.id
+        %td= q.value
         %td
           - q.responses.each do |r|
             - if r[:correct]

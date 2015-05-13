@@ -17,6 +17,7 @@ module Quizzle
       params :pagination do
         optional :limit, type: Integer, values: (0..MAX_RECORDS), default: 10
         optional :offset, type: Integer, default: 0
+        optional :reverse, type: Boolean, default: false
       end
 
       params :id do
@@ -41,6 +42,7 @@ module Quizzle
       # Adjusts query for pagination, returns [relation, offset, count
       def paginate(rel)
         total = rel.count
+        rel = rel.order(id: :desc) if params[:reverse]
         rel = rel.offset(params[:offset]) if params.key?(:offset)
         rel = rel.limit(params[:limit])
         count = rel.size
