@@ -1,0 +1,18 @@
+%h1 Questions
+%table#index
+  %thead
+    %tr
+      %th Questions
+      %th Options
+  %tbody
+    - @qs.each do |q|
+      %tr
+        %td
+          = q.value
+        %td
+          - q.responses.each do |r|
+            - if r[:correct]
+              %span.correct= r[:value]
+            - else
+              %span= r[:value]
+.controls

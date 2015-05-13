@@ -4,9 +4,13 @@ class Question < ActiveRecord::Base
   before_save :update_merged_text
   accepts_nested_attributes_for :answer, :distractors, :allow_destroy => true
 
-  def responses(random: true)
+  def responses(random: false)
     res = [answer] + distractors
-    res.shuffle! if random
+    if random
+      res.shuffle!
+    else
+      res = res.sort_by(&:value)
+    end
     res.map{|o| {value: o.value, correct: o.is_a?(Answer)}}
   end
 

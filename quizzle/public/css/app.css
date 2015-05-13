@@ -1,0 +1,40 @@
+h1 {
+  margin: 0 auto;
+  text-align: center;
+}
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+tbody > tr {
+  cursor: pointer;
+}
+
+tr:first-child {
+  text-align: left;
+  border: 1px solid grey;
+  border-bottom: 2px solid grey;
+}
+td {
+  padding: 0.15em 0.5em;
+  border: 1px solid grey;
+}
+td > span {
+  display: inline-block;
+  padding: 0.1em 0.3em;
+  background-color: steelblue;
+  border-radius: 0.3em;
+  margin-right: 1em;
+  color: white;
+}
+td > span:last-child {
+  margin-right: 0;
+}
+.controls {
+  margin: 0 auto;
+  text-align:center;
+  padding: 1em;
+}
+.controls > button {
+  margin: 1em;
+}
