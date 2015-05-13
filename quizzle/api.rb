@@ -7,13 +7,15 @@ module Quizzle
     format :json
     prefix :api
 
+    MAX_RECORDS = ENV['MAX_RECORDS'] || 100
+
     helpers do
       def authenticate!
         error!('401 Unauthorized', 401) unless headers['X-Api-Key'] == ENV['API_KEY']
       end
 
       params :pagination do
-        optional :limit, type: Integer, values: (0..100), default: 10
+        optional :limit, type: Integer, values: (0..MAX_RECORDS), default: 10
         optional :offset, type: Integer, default: 0
       end
 
@@ -48,7 +50,7 @@ module Quizzle
     end
 
     resource :questions do
-      # Aggregate methods
+      # Collection methods
 
       desc "Index method for questions."
       params do
@@ -86,7 +88,7 @@ module Quizzle
         {results: qs, status: 'OK', total: total, count: count, offset: offset, last: last  }
       end
 
-      # Individual record methods
+      # Member methods
       desc "Read method for questions"
       params do
         requires :id, type: Integer, regexp: /\A\d+\z/, desc: "Question ID"

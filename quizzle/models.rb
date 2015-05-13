@@ -19,7 +19,7 @@ class Question < ActiveRecord::Base
   end
 
   def as_json(options=nil)
-    super(:methods => [:responses], :exclude => [:updated_at, :created_at])
+    super(:methods => [:responses], :except => [:updated_at, :created_at, :merged_text])
   end
 
 end
