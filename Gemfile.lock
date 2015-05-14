@@ -107,6 +107,7 @@ DEPENDENCIES
   grape
   haml
   pry
+  rack-test
   rake
   sinatra
   sinatra-activerecord
