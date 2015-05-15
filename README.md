@@ -104,3 +104,9 @@ Member routes return records in the following format:
     "status": "OK"
     }
 ```
+
+## Web
+
+The web component, run via Sinatra, interacts with the DB solely to provide initial load and nojs execution for the table views.  Paging in most cases should be handled via API.
+
+Because this is a toy app, the combination of basic auth for the web frontend and API key for the API seems reasonable; in an actual application, these would need to be handled much more securely.

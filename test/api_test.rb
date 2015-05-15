@@ -1,8 +1,23 @@
 require './config/environment'
 require 'rack/test'
 require 'minitest/autorun'
+
 class Quizzle::APITest < Minitest::Test
   include Rack::Test::Methods
+
+  def in_memory_database?
+    ENV['RACK_ENV'] == "test" and
+      ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLiteAdapter ||
+      ActiveRecord::Base.connection.class == ActiveRecord::ConnectionAdapters::SQLite3Adapter and
+      ActiveRecord::Base.configurations['test']['database'] == ':memory:'
+  end
+
+  def setup
+    if in_memory_database?
+      puts "creating sqlite in memory database"
+      load "db/schema.rb"
+    end
+  end
 
   def app
     Quizzle::API

@@ -106,6 +106,7 @@ DEPENDENCIES
   dotenv
   grape
   haml
+  minitest
   pry
   rack-test
   rake
